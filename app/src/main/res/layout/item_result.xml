@@ -12,7 +12,6 @@
         android:paddingBottom="@dimen/space.small"
         android:background="@color/snow">
 
-
         <include
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
