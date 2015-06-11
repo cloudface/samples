@@ -1,0 +1,168 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:id="@+id/contentView">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+
+        <RelativeLayout
+            android:id="@+id/resultsContainerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+            <!--Disabled because I can't get it to appear for some reason-->
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"
+                android:background="@color/clear"/>
+        </RelativeLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/searchMask"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar">
+
+        <!--The expanded search mask-->
+        <LinearLayout
+            android:id="@+id/searchMaskExpanded"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/background_stroked_gray_filled_white">
+
+            <RelativeLayout
+                android:id="@+id/searchMaskContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/artistEdit"
+                    style="@style/Widget.SearchMask.EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/label.album" />
+
+                <EditText
+                    android:id="@+id/albumEdit"
+                    style="@style/Widget.SearchMask.EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/artistEdit"
+                    android:hint="@string/label.artist" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/space.larger"
+                android:paddingEnd="@dimen/space.medium"
+                android:paddingLeft="@dimen/space.medium"
+                android:paddingRight="@dimen/space.medium"
+                android:paddingStart="@dimen/space.medium">
+
+                <Button
+                    android:id="@+id/additionalOptionsButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:text="@string/label.options"
+                    tools:text="@string/label.options" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!--The black background for the collapsed mask-->
+        <View
+            android:id="@+id/searchMaskCollapsedBackground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/searchMaskExpanded"
+            android:layout_alignBottom="@+id/searchMaskExpanded"
+            android:background="@color/black"
+            android:alpha="0"/>
+        <!--The collapsed search mask-->
+        <LinearLayout
+            android:id="@+id/searchMaskCollapsed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/searchMaskExpanded"
+            android:alpha="0"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/space.small"
+                android:paddingRight="@dimen/space.small"
+                android:paddingTop="@dimen/space.small">
+
+                <TextView
+                    android:id="@+id/collapsedArtistText"
+                    style="@style/Widget.SearchMask.CollapsedHeader.TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Incubus" />
+
+                <TextView
+                    android:id="@+id/collapsedAlbumText"
+                    style="@style/Widget.SearchMask.CollapsedHeader.TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_toEndOf="@+id/collapsedArtistText"
+                    android:layout_toRightOf="@+id/collapsedArtistText"
+                    android:gravity="end"
+                    tools:text="Light Grenades" />
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/searchMask"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/space.medium"
+        android:text="@string/label.search"
+        android:focusable="true"/>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/red"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/toolbarTitle"
+                style="@style/Widget.SearchMask.Toolbar.TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                tools:text="Toolbar Title" />
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+</RelativeLayout>

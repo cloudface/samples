@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">CollapsableHeaderSample</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="label.artist">Artist</string>
+    <string name="label.album">Album</string>
+    <string name="label.options">Options</string>
+    <string name="label.search">Search</string>
+</resources>
