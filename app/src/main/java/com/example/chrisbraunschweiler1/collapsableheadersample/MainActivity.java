@@ -20,18 +20,17 @@ public class MainActivity extends ActionBarActivity {
 
     private RecyclerView mRecyclerView;
     private Button mSearchButton;
+    private RelativeLayout mSearchMask;
+    private LinearLayout mSearchMaskExpanded;
+    private LinearLayout mSearchMaskCollapsed;
+    private View mSearchMaskCollapsedBackground;
+    private TextView mCollapsedArtistText;
+    private TextView mCollapsedAlbumText;
     private List<MusicPlayerOverviewViewModel> mOverViewModels;
     private MusicPlayerAdapter mAdapter;
     private float mSearchMaskScrollOffset;
     private float mExpandedSearchMaskHeight;
     private float mInitialExpandedSearchMaskY;
-    private RelativeLayout mSearchMask;
-    private LinearLayout mSearchMaskExpanded;
-    private LinearLayout mSearchMaskCollapsed;
-    private View mSearchMaskCollapsedBackground;
-    private boolean mSearchMaskMeasured;
-    private TextView mCollapsedArtistText;
-    private TextView mCollapsedAlbumText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,11 +54,7 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        mRecyclerView.setAdapter(mAdapter);
-        final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setOnScrollListener(new VerbindungenScrollListener());
+        initializeRecyclerView();
 
         mSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,17 +62,28 @@ public class MainActivity extends ActionBarActivity {
                 performSearch();
             }
         });
+        mSearchMaskCollapsed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                snapToExpandedSearchMask((int) mSearchMaskScrollOffset);
+            }
+        });
 
         findViewById(R.id.contentView).getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                if (!mSearchMaskMeasured) {
-                    mExpandedSearchMaskHeight = mSearchMaskExpanded.getHeight();
-                    mInitialExpandedSearchMaskY = (int) mSearchMask.getY();
-                    mSearchMaskMeasured = true;
-                }
+                mExpandedSearchMaskHeight = mSearchMaskExpanded.getHeight();
+                mInitialExpandedSearchMaskY = (int) mSearchMask.getY();
             }
         });
+    }
+
+    private void initializeRecyclerView() {
+        mRecyclerView.setAdapter(mAdapter);
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setOnScrollListener(new VerbindungenScrollListener());
     }
 
     private void performSearch() {
@@ -235,8 +241,6 @@ public class MainActivity extends ActionBarActivity {
         float higherRatio = ratio * 4;
         ratio = 1 - ratio;
         higherRatio = 1 - higherRatio;
-
-        Log.e("", "Ratio: " + ratio);
 
         float scrollOffset = mSearchMaskScrollOffset <= differenceCollapsedAndExpandedMasks ? mSearchMaskScrollOffset : differenceCollapsedAndExpandedMasks;
 
