@@ -16,7 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/background_stroked_gray_filled_white">
+            android:background="@drawable/background_stroked_gray_filled_white"
+            android:padding="@dimen/space.large">
 
             <RelativeLayout
                 android:id="@+id/searchMaskContainer"
@@ -36,6 +37,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/artistEdit"
+                    android:layout_marginTop="@dimen/space.medium"
                     android:hint="@string/label.artist" />
 
             </RelativeLayout>
@@ -60,14 +62,14 @@
             </RelativeLayout>
         </LinearLayout>
 
-        <!--The black background for the collapsed mask-->
+        <!--The colored background for the collapsed mask-->
         <View
             android:id="@+id/searchMaskCollapsedBackground"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/searchMaskExpanded"
             android:layout_alignBottom="@+id/searchMaskExpanded"
-            android:background="@color/black"
+            android:background="@color/orange"
             android:alpha="0"/>
 
         <!--The collapsed search mask-->
@@ -77,7 +79,8 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/searchMaskExpanded"
             android:alpha="0"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/space.large">
 
             <RelativeLayout
                 android:layout_width="match_parent"

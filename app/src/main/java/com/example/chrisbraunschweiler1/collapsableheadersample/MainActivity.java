@@ -83,7 +83,7 @@ public class MainActivity extends ActionBarActivity {
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setOnScrollListener(new VerbindungenScrollListener());
+        mRecyclerView.setOnScrollListener(new MyScrollListener());
     }
 
     private void performSearch() {
@@ -272,7 +272,7 @@ public class MainActivity extends ActionBarActivity {
         mRecyclerView.smoothScrollBy(0, -distanceToExpandedState);
     }
 
-    private class VerbindungenScrollListener extends RecyclerView.OnScrollListener {
+    private class MyScrollListener extends RecyclerView.OnScrollListener {
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);

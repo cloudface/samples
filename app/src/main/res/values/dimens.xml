@@ -5,6 +5,7 @@
     <dimen name="space.large">8dp</dimen>
     <dimen name="space.larger">12dp</dimen>
 
+    <dimen name="size.tiny">2dp</dimen>
     <dimen name="size.smaller">12sp</dimen>
     <dimen name="size.small">15sp</dimen>
     <dimen name="size.medium">18sp</dimen>
