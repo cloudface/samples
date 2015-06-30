@@ -15,7 +15,6 @@
             android:layout_height="match_parent"
             android:visibility="visible">
 
-            <!--Disabled because I can't get it to appear for some reason-->
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
